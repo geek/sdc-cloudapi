@@ -186,6 +186,23 @@ test('Search image type, results', function (t) {
 });
 
 
+test('Search image type, limit, results', function (t) {
+    var url = '/my/images?type=zone-dataset&limit=2';
+    CLIENT.get(url, function (err, req, res, body) {
+        t.ifError(err);
+
+        t.ok(body.length <= 2);
+        body.forEach(function (d) {
+            checkImage(t, d);
+            checkImageViewable(t, d, CLIENT);
+            t.equal(d.type, 'zone-dataset');
+        });
+
+        t.end();
+    });
+});
+
+
 test('GetImage OK', function (t) {
     CLIENT.get('/my/images/' + IMAGE.id, function (err, req, res, body) {
         t.ifError(err, 'GET /my/images/' + IMAGE.id + ' error');

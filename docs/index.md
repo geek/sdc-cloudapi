@@ -3227,6 +3227,8 @@ images:
 **Field** | **Type** | **Description**
 --------- | -------- | ---------------
 name      | String   | The "friendly" name for this image
+limit     | Number   | Maximum number of images to return. Images are sorted by creation date (ASC) by default. The default (and maximum) limit value is 1000
+marker    | UUID, Date | Only return images with a `published_at` >= that of the given image (if a UUID is given) or >= the given date (if a date string is given)
 os        | String   | The underlying operating system for this image
 version   | String   | The version for this image
 public    | Boolean  | Filter public/private images
